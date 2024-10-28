@@ -1,38 +1,16 @@
-import { Button } from "@/components/ui/button";
-import {
-  DialogBody,
-  DialogCloseTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogRoot,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { HStack, Stack } from "@chakra-ui/react";
+import { Skeleton, SkeletonCircle } from "@/components/ui/skeleton";
 
 export default function Home() {
   return (
     <>
-      <DialogRoot
-        size="cover"
-        placement="center"
-        motionPreset="slide-in-bottom"
-      >
-        <DialogTrigger asChild>
-          <Button variant="outline" size="sm">
-            Open Dialog
-          </Button>
-        </DialogTrigger>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Dialog Title</DialogTitle>
-            <DialogCloseTrigger />
-          </DialogHeader>
-          <DialogBody>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </DialogBody>
-        </DialogContent>
-      </DialogRoot>
+      <HStack gap="5">
+        <SkeletonCircle size="12" />
+        <Stack flex="1">
+          <Skeleton height="5" />
+          <Skeleton height="5" width="80%" />
+        </Stack>
+      </HStack>
     </>
   );
 }

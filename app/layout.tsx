@@ -1,3 +1,4 @@
+import TanstackProvider from "@/providers/TanstackProvider";
 import { Provider } from "@/components/ui/provider";
 import type { Metadata } from "next";
 import "./globals.css";
@@ -15,7 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <Provider>{children}</Provider>
+        <TanstackProvider>
+          <Provider>{children}</Provider>
+        </TanstackProvider>
       </body>
     </html>
   );
