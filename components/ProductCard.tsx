@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 
 const addToCart = ({ productId }: { productId: number }): void => {
   if (localStorage.getItem("cart")) {
-    const cart: number[] = JSON.parse(localStorage.getItem("cart"));
+    const cart: number[] = JSON.parse(localStorage.getItem("cart") as string);
 
     cart.push(productId);
 
