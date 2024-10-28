@@ -33,9 +33,9 @@ const Cart = () => {
       <h1 className="pt-[25vh] main-heading text-center text-4xl">
         Products in Cart
       </h1>
-      {products.map((product) =>
+      {products.map((product, index) =>
         product.isLoading ? (
-          <HStack className="w-[80vw] my-12 ml-[10vw]" gap="5" key={product}>
+          <HStack className="w-[80vw] my-12 ml-[10vw]" gap="5" key={index}>
             <SkeletonCircle size="12" />
             <Stack flex="1">
               <Skeleton height="10" />
