@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useQueries } from "@tanstack/react-query";
 import ProductCard from "@/components/ProductCard";
 import { HStack, Stack } from "@chakra-ui/react";
@@ -37,7 +37,7 @@ const Cart = () => {
       </h1>
       {products.map((product) =>
         product.isLoading ? (
-          <HStack className="w-[80vw] my-12 ml-[10vw]" gap="5">
+          <HStack className="w-[80vw] my-12 ml-[10vw]" gap="5" key={product}>
             <SkeletonCircle size="12" />
             <Stack flex="1">
               <Skeleton height="10" />
