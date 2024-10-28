@@ -20,15 +20,13 @@ const Cart = () => {
     if (cart) setProductsData(cart);
   }, []);
 
-  const products: number[] = useQueries({
+  const products = useQueries({
     queries: productsData.map((item) => ({
       queryKey: ["post", item],
       queryFn: () => getItem(item),
       staleTime: Infinity,
     })),
   });
-
-  console.log(products[0]);
 
   return (
     <div>
