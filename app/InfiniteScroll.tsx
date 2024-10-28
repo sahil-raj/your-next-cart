@@ -93,6 +93,7 @@ const InfiniteScroll = ({}) => {
                       key={product.id}
                       title={product.title}
                       description={product.description}
+                      type="add"
                     ></ProductCard>
                   </div>
                 ))}

@@ -16,14 +16,23 @@ const addToCart = ({ productId }: { productId: number }): void => {
   }
 };
 
+const removeFromCart = ({ productId }: { productId: number }): void => {
+  let cart: number[] = JSON.parse(localStorage.getItem("cart") as string);
+  cart = cart.filter((x) => x != productId);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  console.log(this);
+};
+
 const ProductCard = ({
   title,
   description,
   productId,
+  type,
 }: {
   title: string;
   description: string;
   productId: number;
+  type: string;
 }) => {
   return (
     <Card.Root className="mt-12 rounded-xl ml-[10vw]" width="80vw">
@@ -38,7 +47,15 @@ const ProductCard = ({
         <Card.Description>{description}</Card.Description>
       </Card.Body>
       <Card.Footer justifyContent="flex-end">
-        <Button onClick={() => addToCart({ productId })}>Add to cart</Button>
+        <Button
+          onClick={() =>
+            type == "add"
+              ? addToCart({ productId })
+              : removeFromCart({ productId })
+          }
+        >
+          {type}
+        </Button>
       </Card.Footer>
     </Card.Root>
   );
