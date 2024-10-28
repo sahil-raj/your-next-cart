@@ -40,20 +40,26 @@ const getData = async ({
 };
 
 const InfiniteScroll = ({}) => {
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
-    useInfiniteQuery({
-      queryKey: ["products"],
-      queryFn: getData,
-      initialPageParam: 1,
-      getNextPageParam: (lastPage, allPages) => {
-        const totalFetched = allPages.length * 5;
-        return totalFetched < lastPage.total ? allPages.length + 1 : undefined;
-      },
-    });
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    status,
+    isLoading,
+  } = useInfiniteQuery({
+    queryKey: ["products"],
+    queryFn: getData,
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      const totalFetched = allPages.length * 5;
+      return totalFetched < lastPage.total ? allPages.length + 1 : undefined;
+    },
+  });
 
-  const observer = useRef<IntersectionObserver>();
+  const observer = useRef<IntersectionObserver | null>(null);
   const lastItemRef = useCallback(
-    (node: Element) => {
+    (node: HTMLDivElement | null) => {
       if (isFetchingNextPage) return;
 
       if (observer.current) observer.current.disconnect();
@@ -73,7 +79,7 @@ const InfiniteScroll = ({}) => {
     <>
       {" "}
       <div>
-        {status === "loading" ? (
+        {isLoading ? (
           <p>Loading...</p>
         ) : status === "error" ? (
           <p>Error loading products</p>

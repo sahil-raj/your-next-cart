@@ -8,9 +8,10 @@ const addToCart = ({ productId }: { productId: number }): void => {
   if (localStorage.getItem("cart")) {
     const cart: number[] = JSON.parse(localStorage.getItem("cart") as string);
 
-    cart.push(productId);
-
-    localStorage.setItem("cart", JSON.stringify(cart));
+    if (!cart.includes(productId)) {
+      cart.push(productId);
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
   } else {
     localStorage.setItem("cart", JSON.stringify([productId]));
   }
