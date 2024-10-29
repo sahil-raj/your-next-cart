@@ -1,5 +1,5 @@
 // import ProductCard from "@/components/ProductCard";
-import InfiniteScroll from "./InfiniteScroll";
+import InfiniteScroll from "../components/InfiniteScroll";
 import { Suspense } from "react";
 import Loading from "./loading";
 

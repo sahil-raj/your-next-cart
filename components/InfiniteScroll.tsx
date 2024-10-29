@@ -6,27 +6,7 @@ import { Skeleton, SkeletonCircle } from "@/components/ui/skeleton";
 import { useRef, useCallback } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
-
-interface Product {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  discountPercentage: number;
-  rating: number;
-  stock: number;
-  brand: string;
-  category: string;
-  thumbnail: string;
-  images: string[];
-}
-
-interface ProductsResponse {
-  products: Product[];
-  total: number;
-  skip: number;
-  limit: number;
-}
+import { Product, ProductsResponse } from "@/lib/types";
 
 const getData = async ({
   pageParam = 1,
