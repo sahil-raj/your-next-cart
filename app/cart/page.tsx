@@ -20,6 +20,10 @@ const Cart = () => {
     if (cart) setProductsData(cart);
   }, []);
 
+  const handleRemove = (productId: number) => {
+    setProductsData((prev) => prev.filter((id) => id !== productId));
+  };
+
   const products = useQueries({
     queries: productsData.map((item) => ({
       queryKey: ["post", item],
@@ -49,6 +53,7 @@ const Cart = () => {
             title={product.data.title}
             description={product.data.description}
             type="remove"
+            onRemove={handleRemove}
           ></ProductCard>
         )
       )}
