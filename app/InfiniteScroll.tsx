@@ -39,7 +39,7 @@ const getData = async ({
   return data;
 };
 
-const InfiniteScroll = ({}) => {
+const InfiniteScroll = () => {
   const {
     data,
     fetchNextPage,
@@ -60,27 +60,28 @@ const InfiniteScroll = ({}) => {
   const observer = useRef<IntersectionObserver | null>(null);
   const lastItemRef = useCallback(
     (node: HTMLDivElement | null) => {
-      if (isFetchingNextPage) return;
-
       if (observer.current) observer.current.disconnect();
 
       observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasNextPage) {
-          fetchNextPage();
-        }
+        if (entries[0].isIntersecting && hasNextPage) fetchNextPage();
       });
 
       if (node) observer.current.observe(node);
     },
-    [isFetchingNextPage, hasNextPage, fetchNextPage]
+    [hasNextPage, fetchNextPage]
   );
 
   return (
     <>
-      {" "}
       <div>
         {isLoading ? (
-          <p>Loading...</p>
+          <HStack className="w-[80vw] my-12 ml-[10vw]" gap="5">
+            <SkeletonCircle size="12" />
+            <Stack flex="1">
+              <Skeleton height="10" />
+              <Skeleton height="10" width="80%" />
+            </Stack>
+          </HStack>
         ) : status === "error" ? (
           <p>Error loading products</p>
         ) : (

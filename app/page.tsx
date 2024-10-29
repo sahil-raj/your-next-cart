@@ -8,7 +8,7 @@ export default function Home() {
     <div className=" pt-[25vh]">
       <h1 className="main-heading text-center text-4xl">Product List</h1>
       <Suspense fallback={<Loading />}>
-        <InfiniteScroll></InfiniteScroll>
+        <InfiniteScroll />
       </Suspense>
     </div>
   );

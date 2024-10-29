@@ -53,7 +53,7 @@ const ProductCard = ({
               addToCart({ productId });
             } else {
               removeFromCart({ productId });
-              onRemove && onRemove(productId); // call the callback when removed
+              onRemove?.(productId);
             }
           }}
         >
